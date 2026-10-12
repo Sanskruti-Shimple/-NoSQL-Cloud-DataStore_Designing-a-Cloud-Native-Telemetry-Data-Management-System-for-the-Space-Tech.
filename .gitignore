@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+*.py[cod]
+.coverage
+htmlcov/
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+!.terraform.lock.hcl

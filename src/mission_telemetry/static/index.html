@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Mission Control | Telemetry</title>
+    <link rel="stylesheet" href="/assets/styles.css?v=2">
+    <script src="/assets/app.js?v=2" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand-mark" aria-hidden="true">M</div>
+      <div>
+        <p class="eyebrow">MISSION OPERATIONS</p>
+        <h1>Satellite telemetry</h1>
+      </div>
+      <a class="docs-link" href="/docs">API docs <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="panel auth-panel" aria-labelledby="access-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SECURE SESSION</p>
+            <h2 id="access-heading">Connect to mission control</h2>
+          </div>
+          <span id="session-status" class="status-pill status-offline">Signed out</span>
+        </div>
+        <form id="login-form" class="login-form">
+          <label>
+            Operator
+            <input id="username" name="username" autocomplete="username" value="mission-operator" required>
+          </label>
+          <label>
+            Password
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Sign in</button>
+          <button id="logout-button" type="button" class="button-secondary" hidden>Sign out</button>
+        </form>
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="workspace" aria-label="Telemetry tools">
+        <div class="panel query-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MISSION OPERATIONS</p>
+              <h2>Satellite overview</h2>
+            </div>
+            <span id="pipeline-mode" class="live-indicator" role="status"><span aria-hidden="true"></span> CHECKING</span>
+          </div>
+          <form id="satellite-form" class="inline-form">
+            <label for="satellite-id">Satellite ID</label>
+            <input id="satellite-id" name="satellite-id" value="SAT-001" maxlength="64" required>
+            <button type="submit" class="button-secondary">Refresh</button>
+          </form>
+          <div class="summary-row">
+            <article class="summary-card">
+              <span class="summary-label">Sensors reporting</span>
+              <strong id="sensor-count">—</strong>
+            </article>
+            <article class="summary-card">
+              <span class="summary-label">Recent alerts</span>
+              <strong id="alert-count">—</strong>
+            </article>
+          </div>
+          <h3>Current health snapshot</h3>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Sensor</th><th>Metric</th><th>Reading</th><th>Last update</th></tr></thead>
+              <tbody id="health-rows">
+                <tr><td colspan="4" class="empty-state">Sign in and refresh a satellite.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel side-panel">
+          <p class="eyebrow">INGESTION</p>
+          <h2>Submit a telemetry packet</h2>
+          <form id="telemetry-form" class="telemetry-form">
+            <label>Module ID<input name="module_id" value="power" maxlength="64" required></label>
+            <label>Sensor ID<input name="sensor_id" value="temp-01" maxlength="64" required></label>
+            <label>Metric<input name="metric" value="temperature_c" maxlength="64" required></label>
+            <div class="field-pair">
+              <label>Value<input name="value" type="number" step="any" value="23.5" required></label>
+              <label>Unit<input name="unit" value="C" maxlength="16" required></label>
+            </div>
+            <label>Sequence<input name="sequence" type="number" min="0" step="1" value="1" required></label>
+            <button type="submit">Submit packet</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel" aria-labelledby="alerts-heading">
+          <div class="section-heading">
+            <div><p class="eyebrow">THRESHOLD MONITORING</p><h2 id="alerts-heading">Recent alerts</h2></div>
+          </div>
+          <ul id="alert-list" class="alert-list">
+            <li class="empty-state">No alerts loaded.</li>
+          </ul>
+        </section>
+        <section class="panel" aria-labelledby="dependencies-heading">
+          <div class="section-heading">
+            <div><p class="eyebrow">SYSTEM TOPOLOGY</p><h2 id="dependencies-heading">Component dependencies</h2></div>
+          </div>
+          <ul id="dependency-list" class="dependency-list">
+            <li class="empty-state">No dependency graph loaded.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <span>Mission telemetry platform</span>
+      <span>Local capstone demo · Not for flight operations</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Satellite telemetry packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "satellite_id",
+    "module_id",
+    "sensor_id",
+    "metric",
+    "value",
+    "unit",
+    "observed_at",
+    "sequence"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "satellite_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "module_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "sensor_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "metric": {
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.-]*$",
+      "maxLength": 64
+    },
+    "value": {
+      "type": "number"
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

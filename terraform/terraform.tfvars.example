@@ -1,0 +1,10 @@
+project_name       = "mission-telemetry"
+environment        = "dev"
+location            = "westus"
+app_service_sku      = "Y1"
+app_service_location = "westus2"
+image_tag         = "mission-v1"
+budget_amount_usd  = 100
+
+# Demo passwords and JWT secret are generated automatically and stored in Key Vault.
+# The demo uses in-memory NoSQL projections; see README for persistence limitations.
